@@ -39,9 +39,9 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'harbor-creds', usernameVariable: 'HARBOR_USER', passwordVariable: 'HARBOR_PASSWORD')]) {
           sh '''
-          echo "$HARBOR_PASSWORD" | docker login ${HARBOR_URL} -u "$HARBOR_USER" --password-stdin
+          echo "$HARBOR_PASSWORD" | docker login https://${HARBOR_URL} -u "$HARBOR_USER" --password-stdin
           docker push ${IMAGE_NAME}:${IMAGE_TAG}
-          docker logout ${HARBOR_URL}
+          docker logout https://${HARBOR_URL}
           '''
         }
       }
@@ -50,10 +50,10 @@ pipeline {
 
   post {
     success {
-      echo 'Build and push succeeded!'
+      echo '✅ Build and push succeeded!'
     }
     failure {
-      echo 'Build failed!'
+      echo '❌ Build or push failed!'
     }
     always {
       cleanWs()
