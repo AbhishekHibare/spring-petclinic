@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  tools {
-    maven 'maven-3'  // optional, if you configured Maven tool in Jenkins. Else skip this block.
-  }
   stages {
     stage('Clone') {
       steps {
