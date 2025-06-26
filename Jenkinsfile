@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    HARBOR_URL = '192.168.109.196:4424'
+    HARBOR_URL = '10.139.109.196:4424'
     HARBOR_PROJECT = 'testing'
     IMAGE_NAME = "${HARBOR_URL}/${HARBOR_PROJECT}/spring-petclinic"
     IMAGE_TAG = "build-${BUILD_NUMBER}"
